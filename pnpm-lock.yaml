@@ -1,0 +1,13 @@
+lockfileVersion: 5.4
+
+specifiers:
+  immer: ^9.0.21
+
+dependencies:
+  immer: 9.0.21
+
+packages:
+
+  /immer/9.0.21:
+    resolution: {integrity: sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==}
+    dev: false
