@@ -38,7 +38,7 @@ function anyDiagonalMatch (gameButtons: CheckButton[]): boolean{
   const firstDiagonal = gameButtons.filter((_button, index) => index  % 4 === 0)
   if (checkedBySamePlayer(firstDiagonal)) return true
 
-  const secondDiagonal = gameButtons.filter((_button, index) => index % 2 === 0 && index <= 6)
+  const secondDiagonal = gameButtons.filter((_button, index) => index > 0 && (index % 2 === 0) && (index <= 6))
   if (checkedBySamePlayer(secondDiagonal)) return true
   
   return false

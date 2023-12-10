@@ -24,13 +24,17 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (hasSomeoneWon(buttons))
-      setGameState({
-        hasSomeoneWon: true,
-        winner: activePlayer === Player.Player1 ? Player.Player2 : Player.Player1, // 
-        isGameOver: true,
-      });
-    if (buttons.every((button) => button.checked)) setGameState({ ...gameState, isGameOver: true });
+    if (!gameState.isGameOver) {
+      if (hasSomeoneWon(buttons))
+        setGameState({
+          hasSomeoneWon: true,
+          winner: activePlayer === Player.Player1 ? Player.Player2 : Player.Player1, // if a player is active after the game is over it means they just lost
+          isGameOver: true,
+        });
+
+      if (buttons.every((button) => button.checked))
+        setGameState({ ...gameState, isGameOver: true });
+    }
   }, [buttons, activePlayer, gameState]);
 
   const gameOverMessage =
