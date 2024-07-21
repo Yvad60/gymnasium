@@ -1,0 +1,21 @@
+modules:
+  jira:issuePanel:
+    - key: confetti-cannon
+      title: Confetti Cannon
+      resource: issue-panel-frontend
+      icon: https://developer.atlassian.com/platform/forge/images/icons/issue-panel-icon.svg
+
+  function:
+    - key: trigger
+      handler: index.run
+
+resources:
+  - key: issue-panel-frontend
+    path: frontend/dist
+    tunnel:
+      port: 5173
+
+app:
+  runtime:
+    name: nodejs18.x
+  id: ari:cloud:ecosystem::app/5b70ca4a-c955-4894-995d-c0135203da80
