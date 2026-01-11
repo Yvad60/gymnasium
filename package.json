@@ -1,0 +1,25 @@
+{
+  "name": "gymnasium",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.4",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.1.1",
+    "express": "^5.1.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "type": "module",
+  "devDependencies": {
+    "vite": "^7.2.4"
+  }
+}
