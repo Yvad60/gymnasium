@@ -20,13 +20,13 @@ function App() {
 
   return (
     <div>
-      <button onClick={() => instance.loginRedirect()}>Login</button>
+      <button onClick={() => instance.loginRedirect({
+        scopes: loginRequest.scopes
+      })}>Login</button>
       {isAuthenticated && (
         <button
           onClick={() =>
-            instance.logoutRedirect({
-              postLogoutRedirectUri: window.location.origin,
-            })
+            instance.logoutRedirect()
           }
         >
           Logout

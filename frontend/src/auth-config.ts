@@ -8,6 +8,7 @@ export const authConfig: Configuration = {
   auth: {
     clientId,
     redirectUri: window.location.origin,
+    postLogoutRedirectUri: window.location.origin,
     authority: `https://login.microsoftonline.com/${tenantId}`,
   },
   cache: {
@@ -16,5 +17,5 @@ export const authConfig: Configuration = {
 };
 
 export const loginRequest = {
-  scopes: [apiAccessScope],
+  scopes: ["openid", "profile", apiAccessScope],
 };
