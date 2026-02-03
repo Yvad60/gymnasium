@@ -3,6 +3,7 @@ import "dotenv/config";
 import express from "express";
 import jwt from "jsonwebtoken";
 import jwksRsa from "jwks-rsa";
+import * as client from "openid-client";
 
 const AZURE_TENANT_ID = process.env.AZURE_TENANT_ID;
 const AZURE_BACKEND_CLIENT_ID = process.env.AZURE_BACKEND_CLIENT_ID;
@@ -54,6 +55,21 @@ app.get("/", (req, res) => {
       return res.status(200).json({ ok: true, decoded });
     },
   );
+});
+
+app.get("/okta", async (req, res) => {
+  const issuerUrl = new URL('https://trial-6587619.okta.com/oauth2/default');
+  const config = await client.discovery(issuerUrl, "0oazl25jewoyOAf9k697", "uk4XGh4g1e1Eargo-z9RbkAruHxlW0Bmx10cvQxoZzJh9r9MDPw13HcK7d4pBzyO");
+
+  const url = client.buildAuthorizationUrl(config, {
+    redirect_uri: 'http://localhost:5173/authorization-code/callback/',
+    scope: 'openid profile email',
+    response_mode: 'query',
+    state: 'some-random-state',
+    prompt: 'login',
+  });
+
+  res.redirect(url.href);
 });
 
 const PORT = 3000;
