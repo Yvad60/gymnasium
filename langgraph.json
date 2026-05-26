@@ -1,5 +1,8 @@
 {
   "dependencies": ["."],
-  "graphs": { "compiledWorkflow": "index.ts:compiledWorkflow" },
+  "graphs": {
+    "compiledWorkflow": "index.ts:compiledWorkflow",
+    "simpleWorkflow": "simple-graph.ts:compiledWorkflow"
+  },
   "env": ".env"
 }
