@@ -782,3 +782,6 @@ buck-out/
 .fakebuckversion
 
 # End of https://www.toptal.com/developers/gitignore/api/node,python,aspnetcore,react,reactnative
+
+# LangGraph API
+.langgraph_api

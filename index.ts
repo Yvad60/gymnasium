@@ -1,12 +1,12 @@
-import { END, Graph, START } from "@langchain/langgraph";
+import { Annotation, END, START, StateGraph } from "@langchain/langgraph";
 import { AzureChatOpenAI } from "@langchain/openai";
 import "dotenv/config";
 
-const tokenCounter = (input: string) => {
-  console.log("here is the input", input);
-  return input.split(" ").length;
-};
-const workflow = new Graph();
+const StateAnnotation = Annotation.Root({
+  userMessage: Annotation<string>(),
+  llmResponse: Annotation<string>(),
+  tokenCount: Annotation<number>(),
+});
 
 const model = new AzureChatOpenAI({
   azureOpenAIApiKey: process.env.AZURE_OPENAI_API_KEY ?? "",
@@ -15,21 +15,23 @@ const model = new AzureChatOpenAI({
   azureOpenAIApiVersion: process.env.AZURE_OPENAI_API_VERSION ?? "",
 });
 
-const llmModel = async (userMessage: string) => {
-  console.log("here is the user message", userMessage);
-  const response = await model.invoke(userMessage);
-  return response.content;
+const llmModel = async (state: typeof StateAnnotation.State) => {
+  console.log("here is the user message", state.userMessage);
+  const response = await model.invoke(state.userMessage);
+  return { llmResponse: response.content as string };
 };
 
-workflow
+const tokenCounter = (state: typeof StateAnnotation.State) => {
+  console.log("here is the input", state.llmResponse);
+  const count = state.llmResponse.split(" ").length;
+  return { tokenCount: count };
+};
+
+const workflow = new StateGraph(StateAnnotation)
   .addNode("LLM_MODEL", llmModel)
   .addNode("TOKEN_COUNTER", tokenCounter)
   .addEdge(START, "LLM_MODEL")
   .addEdge("LLM_MODEL", "TOKEN_COUNTER")
   .addEdge("TOKEN_COUNTER", END);
 
-const compiledWorkflow = workflow.compile();
-
-const response = await compiledWorkflow.invoke("Hello there");
-
-console.log(response);
+export const compiledWorkflow = workflow.compile();
