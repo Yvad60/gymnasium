@@ -4,7 +4,9 @@
     "compiledWorkflow": "index.ts:compiledWorkflow",
     "simpleWorkflow": "simple-graph.ts:compiledWorkflow",
     "simpleChain": "simple-chain.ts:graph",
-    "simpleRouter": "simple-router.ts:graph"
+    "simpleRouter": "simple-router.ts:graph",
+    "simpleAgent": "simple-agent.ts:graph",
+    "simpleAgentMemory": "simple-agent-memory.ts:graph"
   },
   "env": ".env"
 }
