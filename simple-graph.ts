@@ -37,7 +37,7 @@ export const compiledWorkflow = workflow
   .addNode("node_2", node2)
   .addNode("node_3", node3)
   .addEdge(START, "node_1")
-  .addConditionalEdges("node_1", decideMood)
+  .addConditionalEdges("node_1", decideMood, ["node_2", "node_3"])
   .addEdge("node_2", END)
   .addEdge("node_3", END)
   .compile();

@@ -2,7 +2,9 @@
   "dependencies": ["."],
   "graphs": {
     "compiledWorkflow": "index.ts:compiledWorkflow",
-    "simpleWorkflow": "simple-graph.ts:compiledWorkflow"
+    "simpleWorkflow": "simple-graph.ts:compiledWorkflow",
+    "simpleChain": "simple-chain.ts:graph",
+    "simpleRouter": "simple-router.ts:graph"
   },
   "env": ".env"
 }
