@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Chat Assistant — Assignment 2</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <!-- ── Main: Chat ─────────────────────────────────────────────────── -->
+      <main class="chat-panel">
+        <header class="chat-header">
+          <h1>AI Chat Assistant</h1>
+          <label class="stream-toggle">
+            <input type="checkbox" id="stream-toggle" />
+            Stream
+          </label>
+          <button id="reset-btn">Reset Conversation</button>
+        </header>
+
+        <div id="chat-messages" class="chat-messages">
+          <div class="message assistant">
+            <div class="bubble">
+              Hello! I'm your AI assistant. How can I help you today?
+            </div>
+          </div>
+        </div>
+
+        <form id="chat-form" class="chat-input-area">
+          <textarea
+            id="user-input"
+            rows="2"
+            placeholder="Type your message… (Enter to send, Shift+Enter for new line)"
+          ></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </main>
+    </div>
+
+    <script src="/app.js?v=5"></script>
+  </body>
+</html>
